@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, useColorScheme, Image} from 'react-native';
+import {View, Text, StyleSheet, useColorScheme} from 'react-native';
 import {colors} from '../../util/ui/Colors';
+import ImageText from '../../components/ImageText';
+import {fontSizes} from '../../util/ui/Sizes';
 
-const appLogo = require('../../assests/app-logo.png');
+const appLogo = require('../../assests/app-icon.png');
 
 const SplashScreen = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -10,7 +12,11 @@ const SplashScreen = ({navigation}) => {
   return (
     <View style={styles(isDarkMode).containerStyle}>
       <View style={styles(isDarkMode).imageContainerStyle}>
-        <Image source={appLogo} />
+        <ImageText
+          imageStyle={styles(isDarkMode).imageStyle}
+          imageSource={appLogo}
+          text={'Adproof'}
+        />
       </View>
 
       <Text style={styles(isDarkMode).firstTextStyle}>
@@ -37,8 +43,13 @@ const styles = (isDarkMode: Boolean) => {
       justifyContent: 'center',
     },
 
+    imageStyle: {
+      width: 50,
+      height: 50,
+    },
+
     firstTextStyle: {
-      fontSize: 12,
+      fontSize: fontSizes.sm,
       color: colors(isDarkMode).textGrey,
       fontWeight: '500',
       position: 'absolute',
